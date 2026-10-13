@@ -1,0 +1,214 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\pos}{\operatorname{pos}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\id}{\mathbb{1}}
+\newtheorem*{proposition}{Proposition}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\Urlmuskip=0mu plus 1mu
+\begin{document}
+\begin{center}
+{\Large\bfseries Singlet padding and the universal precession GME threshold}\\[5pt]
+Haobo Ma\textsuperscript{1,3} and Wenlin Zhang\textsuperscript{2,3}\\[3pt]
+{\small\textsuperscript{1}ChronoAI Pte Ltd, Singapore}\\
+{\small\textsuperscript{2}National University of Singapore}\\
+{\small\textsuperscript{3}The Omega Institute}\\[3pt]
+9 October 2026
+\end{center}
+
+\textbf{Source and statement.}
+Conjecture 3 of Huynh-Vu, Zaw and Scarani~[1] asserts that, for every spin
+ensemble and every odd $K\geq3$, a score above $T_K$ certifies genuine
+multipartite entanglement (GME). In units $\hbar=1$, for a finite ensemble
+of positive half-integer spins $j_1,\ldots,j_N$, write
+\[
+J_\alpha=\sum_{n=1}^{N}J_\alpha^{(n)},\quad
+J_k=\cos\theta_k J_x+\sin\theta_k J_y,\quad
+\theta_k=\frac{2\pi k}{K},\quad
+Q_K=\frac1K\sum_{k=0}^{K-1}\pos(J_k).
+\]
+For a Hermitian matrix $A$, $\pos(A)$ has spectral weights $1,1/2,0$
+on positive, zero, and negative eigenvalues, respectively. A density matrix
+$\rho\succeq0$, $\tr\rho=1$, has score $P_K(\rho)=\tr(\rho Q_K)$.
+A state separable across a nonempty proper subset $S$ is a convex mixture
+of $\rho_S\otimes\rho_{S^c}$. GME excludes convex mixtures of such states,
+allowing different cuts in different terms. With
+$c_K=2^{-(K-1)}\binom{K-1}{(K-1)/2}$, the proposed threshold is
+\[
+T_K=\begin{cases}
+23/32,&K=3,\\
+(69+\sqrt{181})/128,&K=5,\\
+\frac12\left(1+c_K\frac{K-1}{K+1}\right),&K\geq7\text{ odd}.
+\end{cases}
+\]
+
+\textbf{Score-preserving padding.}
+Let $s=(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})/\sqrt2$ be
+the normalized two-spin-$1/2$ singlet. The pair operators
+$L_\alpha=J_\alpha^{(1)}+J_\alpha^{(2)}$ satisfy $L_xs=L_ys=0$:
+applying either spin-$1/2$ matrix to the two terms gives cancelling coefficients.
+For any remaining finite ensemble, let $B_k$ be its precession observable
+and $A_k=L_k\otimes\id+\id\otimes B_k$ the padded observable.
+The isometry $V\varphi=s\otimes\varphi$ satisfies $A_kV=VB_k$.
+If $B_k u=\lambda u$, then $A_k Vu=\lambda Vu$, so
+$\pos(A_k)Vu=V\pos(B_k)u$. An eigenbasis of $B_k$ therefore gives
+$\pos(A_k)V=V\pos(B_k)$, including the half weight at zero.
+For every remaining density matrix $\sigma$, cyclicity of the finite trace gives
+\[
+\tr\!\left[(\ket{s}\bra{s}\otimes\sigma)\pos(A_k)\right]
+=\tr\!\left[\sigma V^*\pos(A_k)V\right]
+=\tr[\sigma\pos(B_k)].
+\]
+Averaging over $k$ proves $P_K(\ket{s}\bra{s}\otimes\sigma)=P_K(\sigma)$.
+The padded state is a product across the pair--rest cut and hence is not GME.
+
+\textbf{Consequence for unrestricted ensembles.}
+For fixed $K$, let $\mathcal S_K^{\rm q}$ be all scores from all nonempty
+finite positive-spin ensembles, and let $\mathcal S_K^{\rm bisep}$ restrict
+to biseparable states on ensembles with at least two particles. Padding
+realizes every member of $\mathcal S_K^{\rm q}$ in
+$\mathcal S_K^{\rm bisep}$; the reverse inclusion is immediate. Thus
+$\mathcal S_K^{\rm q}=\mathcal S_K^{\rm bisep}$ and their suprema agree.
+Any composition-independent threshold below this supremum admits a
+biseparable violation. This argument permits changing the ensemble;
+it does not identify the two optima for a fixed ensemble.
+
+\newpage
+\textbf{An exact three-particle counterexample at $K=3$.}
+Take physical spins $(1/2,1/2,3/2)$ and the pure state
+\[
+\psi=s\otimes g,\qquad
+g=\frac{\ket{3/2,3/2}-\ket{3/2,-3/2}}{\sqrt2},\qquad
+\rho=\ket{\psi}\bra{\psi}.
+\]
+Both factors are unit vectors, so $\rho$ is positive semidefinite with
+trace one. Its displayed factorization proves separability across
+$\{1,2\}\mid\{3\}$. All three constituent spins are strictly positive.
+
+Here is a full finite calculation of the remaining spin's score. In the
+ordered $J_z$ basis with $m=3/2,1/2,-1/2,-3/2$, put $a=\sqrt3$ and
+\[
+X=J_x^{(3/2)}=
+\begin{pmatrix}
+0&a/2&0&0\\ a/2&0&1&0\\0&1&0&a/2\\0&0&a/2&0
+\end{pmatrix},\qquad
+W=\begin{pmatrix}
+1&a&a&1\\a&1&-1&-a\\a&-1&-1&a\\1&-a&a&-1
+\end{pmatrix}.
+\]
+Direct multiplication gives $W^*W=8\id$ and
+\[
+XW=W\operatorname{diag}(3/2,1/2,-1/2,-3/2).
+\]
+Consequently
+\[
+\pos(X)=\frac18W\operatorname{diag}(1,1,0,0)W^*
+=\begin{pmatrix}
+1/2&a/4&0&-1/4\\a/4&1/2&1/4&0\\
+0&1/4&1/2&a/4\\-1/4&0&a/4&1/2
+\end{pmatrix}.
+\]
+For $X_\theta=\cos\theta J_x^{(3/2)}+\sin\theta J_y^{(3/2)}$, let
+$R_\theta=\operatorname{diag}(1,e^{i\theta},e^{2i\theta},e^{3i\theta})$.
+The standard spin matrices give
+$X_\theta=R_\theta X R_\theta^*$ and therefore
+$\pos(X_\theta)=R_\theta\pos(X)R_\theta^*$.
+The endpoint diagonal entries are $1/2$ and the endpoint off-diagonal
+entry is $-e^{-3i\theta}/4$. Since $g=(1,0,0,-1)^T/\sqrt2$,
+\[
+\bra{g}\pos(X_\theta)\ket{g}
+=\frac12+\frac14\cos(3\theta).
+\]
+For each $\theta_k=2\pi k/3$, this equals $3/4$.
+Padding therefore gives
+\[
+\boxed{P_3(\rho)=\frac34=\frac{24}{32}>\frac{23}{32}=T_3,
+\qquad \rho\text{ is biseparable}.}
+\]
+This refutes Conjecture 3 with exact gap $1/32$. It also violates the
+implication in Result 4: $K=3$ lies in its range, the constituent-spin sum
+is $5/2\leq15$, and $1/32>10^{-11}$.
+
+\textbf{What survives.}
+The witness lies outside Result 1's hypothesis $\sum_n j_n=K/2$;
+that source result is not contradicted. Nor does it contradict a bound
+whose hypotheses require positive effective spins on both sides of a cut.
+The essential distinction is that positive \emph{constituent} spins
+can have an effective spin-zero sector. Omitting that sector from a
+maximization over cuts omits physically admissible biseparable states.
+
+\newpage
+\textbf{A uniform family for every odd $K\geq3$.}
+Let $L=(K-1)/2$ and take $K$ remaining spin-$1/2$ particles in
+\[
+g_K=\frac{\ket{\uparrow}^{\otimes K}+(-1)^L
+\ket{\downarrow}^{\otimes K}}{\sqrt2}.
+\]
+For $B_0=\frac12\sum_{n=1}^{K}\sigma_x^{(n)}$, its tensor-product
+$x$ eigenbasis is indexed by the number $r$ of negative local eigenvalues.
+The eigenvalue is $K/2-r$, which is positive exactly when $0\leq r\leq L$.
+Each eigenvector contributes $2^{-K}$ to the endpoint diagonal entries
+and $(-1)^r2^{-K}$ to their off-diagonal entry. Hence those diagonal
+entries are $1/2$, and
+\[
+\bra{\uparrow^K}\pos(B_0)\ket{\downarrow^K}
+=2^{-K}\sum_{r=0}^{L}(-1)^r\binom Kr
+=(-1)^L2^{-K}\binom{K-1}{L}
+=\frac{(-1)^L c_K}{2}.
+\]
+The middle identity follows from Pascal's rule: the two alternating
+sums telescope, leaving $(-1)^L\binom{K-1}{L}$.
+Rotation about $z$ multiplies the endpoint off-diagonal entry by
+$e^{-iK\theta}$; for $\theta_k=2\pi k/K$ this is one.
+Thus every sampled direction has the same expectation and
+\[
+P_K(g_K)=\frac{1+c_K}{2},\qquad
+P_K(s\otimes g_K)-T_K=
+\begin{cases}
+1/32,&K=3,\\
+(19-\sqrt{181})/128,&K=5,\\
+c_K/(K+1),&K\geq7\text{ odd}.
+\end{cases}
+\]
+All gaps are strictly positive: $181<19^2$ and $c_K>0$.
+The padded state has $K+2$ positive-spin constituents and is biseparable
+across the singlet--rest cut. This is an exact written proof of the family,
+not an inference from finitely many numerical samples.
+
+\textbf{What the Lean development checks.}
+The linked module~[2] defines the literal tensor-product spin observables,
+the spectral convention at zero, normalized density matrices,
+cut separability, GME, and the universal implication. Its public theorem
+\texttt{result : $\neg$ claim} proves the three-particle $K=3$ refutation above.
+Its private helper \texttt{singlet\_padding\_ensemble\_score}, used in that
+proof, checks the score identity for an arbitrary remaining spin list and
+matrix, with the literal ensemble observables. The spin parameters in
+Lean are doubled physical spins: \texttt{![1,1,3]} denotes
+$(1/2,1/2,3/2)$.
+
+The all-odd GHZ formula and the score-set/supremum consequence proved
+here are not separate Lean theorems in this module. The merged delivery
+records a successful Lean build and standard axiom closure
+(\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}) at the
+revision linked below; this note reports that validation, not a fresh run.
+Whether an appropriate exclusion of zero-spin cut sectors restores the
+printed threshold remains an open corrected question.
+
+\small
+\textbf{References.}\par
+[1] K.-N. Huynh-Vu, L. H. Zaw and V. Scarani,
+\emph{Certification of genuine multipartite entanglement in spin ensembles
+with measurements of total angular momentum}, Phys. Rev. A 109, 042402
+(2024), arXiv v2, Conjecture 3 and Result 4, p.~9.
+\url{https://arxiv.org/abs/2311.00806v2}\par
+[2] Lean source at the recorded validated revision:
+\href{https://github.com/the-omega-institute/trureturing/blob/3155010510edfab84323e848b07abac257ed5ed5/D5/S3/Quantum/Entanglement/PrecessionUniversalThresholdRefutation.lean}{\texttt{PrecessionUniversalThresholdRefutation.lean}},
+commit \texttt{3155010510edfab84323e848b07abac257ed5ed5}.
+\end{document}
